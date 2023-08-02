@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: stripe
+    database: analytics-lab1
+    schema: stripe
+    tables:
+      - name: raw_payments
+        loaded_at_field: "CAST(current_datetime AS TIMESTAMP)"
+        freshness:
+          warn_after: {count: 12, period: hour}
+          error_after: {count: 24, period: hour}
